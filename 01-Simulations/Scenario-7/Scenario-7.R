@@ -79,7 +79,7 @@ sim7_1d95_sars <- perfcheck(S = S, serial_interval = si_sars, scenario = 3,
 
 #---- Extracting plots
 pdf(file = "Figures/S7_LPSMAP_Incidence.pdf", width = 6, height = 4.5) 
-sim7_LPSMAP90_sars$inciplot+ggplot2::ggtitle("Incidence (Scenario 6)")
+sim7_LPSMAP90_sars$inciplot+ggplot2::ggtitle("Incidence (Scenario 7)")
 dev.off()
 pdf(file = "Figures/S7_LPSMAP_sars.pdf", width = 6, height = 4.5) 
 sim7_LPSMAP90_sars$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories")
@@ -99,7 +99,7 @@ dev.off()
 
 png(file = "Figures/Scenario7_Summary_plots.png", width = 1000, height = 1100)
 gridExtra::grid.arrange(sim7_LPSMAP90_sars$inciplot+
-                          ggplot2::ggtitle("Incidence (Scenario 6)"),
+                          ggplot2::ggtitle("Incidence (Scenario 7)"),
                         sim7_LPSMAP90_sars$Rlpsplot+
                           ggplot2::ggtitle("LPSMAP trajectories"),
                         sim7_LPSMALA90_sars$Rlpsplot+

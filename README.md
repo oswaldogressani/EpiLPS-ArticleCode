@@ -1,7 +1,7 @@
 Reproducing the results of the EpiLPS article
 ================
 Oswaldo Gressani
-2022-05-25
+2022-07-14
 
 ### Structure of the repository
 
@@ -9,7 +9,7 @@ Oswaldo Gressani
 
 Contains the routines to reproduce the results of the EpiLPS paper based
 on the CRAN package <https://cran.r-project.org/package=EpiLPS> version
-1.0.5.
+1.0.6.
 
 ### Acknowledgments
 

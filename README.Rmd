@@ -2,7 +2,7 @@
 title: "Reproducing the results of the EpiLPS article"
 output: github_document
 author: Oswaldo Gressani
-date: 2022-05-25
+date: 2022-07-14
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ![](FolderStructure.png)
 
 Contains the routines to reproduce the results of the EpiLPS paper based 
-on the CRAN package <https://cran.r-project.org/package=EpiLPS> version 1.0.5.
+on the CRAN package <https://cran.r-project.org/package=EpiLPS> version 1.0.6.
 
 ### Acknowledgments
 
