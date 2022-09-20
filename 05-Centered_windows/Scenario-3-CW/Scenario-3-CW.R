@@ -26,14 +26,11 @@ simcheck <- episim(serial_interval = si_flu, endepi = 40, Rpattern = 3,
                    dist="negbin", overdisp = 1000, verbose = TRUE,
                    plotsim = TRUE)
 
-# LPSMAP, LPSMALA and EpiEstim with 7 days window
-pdf(file = "Figures/LPSMAP_S3_7d.pdf", width = 15, height = 4.6)
 sim3_LPSMAP90_flu <- perfcheck(S = S, serial_interval = si_flu, scenario = 3,
                            K = 40, method = "LPSMAP", dist = "negbin",
                            overdisp = 1000, ci_level = 0.90,
                            seed = seedval, themetype = "gray", epidays = 40,
                            midwindow = TRUE)
-dev.off()
 
 sim3_LPSMALA90_flu <- perfcheck(S = S, serial_interval = si_flu, scenario = 3,
                                 K = 40, method = "LPSMALA", chain_length = 3000,
@@ -74,16 +71,20 @@ pdf(file = "Figures/S3_LPSMAP_Incidence.pdf", width = 6, height = 4.5)
 sim3_LPSMAP90_flu$inciplot+ggplot2::ggtitle("Incidence (Scenario 3)")
 dev.off()
 pdf(file = "Figures/S3_LPSMAP_flu.pdf", width = 6, height = 4.5) 
-sim3_LPSMAP90_flu$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories")
+sim3_LPSMAP90_flu$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S3_LPSMALA_flu.pdf", width = 6, height = 4.5) 
-sim3_LPSMALA90_flu$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories")
+sim3_LPSMALA90_flu$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S3_EpiEstim7d_flu.pdf", width = 6, height = 4.5) 
-sim3_LPSMAP90_flu$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories")
+sim3_LPSMAP90_flu$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S3_EpiEstim3d_flu.pdf", width = 6, height = 4.5) 
-sim3_3d90_flu$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories")
+sim3_3d90_flu$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 
 
@@ -91,15 +92,33 @@ png(file = "Figures/Scenario3_Summary_plots.png", width = 1000, height = 1100)
 gridExtra::grid.arrange(sim3_LPSMAP90_flu$inciplot+
                           ggplot2::ggtitle("Incidence (Scenario 3)"),
                         sim3_LPSMAP90_flu$Rlpsplot+
-                          ggplot2::ggtitle("LPSMAP trajectories"),
+                          ggplot2::ggtitle("LPSMAP trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim3_LPSMALA90_flu$Rlpsplot+
-                          ggplot2::ggtitle("LPSMALA trajectories"),
+                          ggplot2::ggtitle("LPSMALA trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim3_LPSMAP90_flu$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 7d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim3_3d90_flu$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 3d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         nrow = 3, ncol = 2)
 dev.off()
+
+
+pdf(file = "Figures/LPSMAP_S3_7d.pdf", width = 15, height = 4.6)
+# LPSMAP, LPSMALA and EpiEstim with 7 days window
+gridExtra::grid.arrange(
+sim3_LPSMAP90_flu$inciplot+ggplot2::ggtitle("Incidence (Scenario 3)"),
+sim3_LPSMAP90_flu$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+ggplot2::xlim(c(8,42)),
+sim3_LPSMAP90_flu$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+ggplot2::xlim(c(8,42)),
+nrow = 1, ncol = 3)
+dev.off()
+  
+
                         
 #------ Populating table for flu SI
 Scenario3_flu <- matrix(0, nrow = 4, ncol = 6)

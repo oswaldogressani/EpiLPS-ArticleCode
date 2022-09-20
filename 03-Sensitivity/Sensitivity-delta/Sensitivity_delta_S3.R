@@ -236,7 +236,7 @@ par(mfrow = c(1,2))
 
 # P1: a_delta=5; b_delta=5
 plot(seq(1,33),RCIlowa5[1,], type="p", ylim = c(0,5), col="darkolivegreen",
-     pch = 0, main = "Sensitivity of CI lower bound (Scenario 3)", 
+     pch = 0, main = "Sensitivity of 90% CI lower bound (Scenario 3)", 
      xlab = "Time (days)", ylab = "CI lower bound")
 for(s in 2:S){
   lines(seq(1,33),RCIlowa5[s,], type = "p", col = "darkolivegreen", pch = 0)
@@ -273,7 +273,7 @@ legend("topleft", "(a_delta=b_delta)", bty = "n")
 
 # P1: a_delta=5; b_delta=5
 plot(seq(1,33),RCIupa5[1,], type="p", ylim = c(0,5), col="darkolivegreen", 
-     pch = 0, main = "Sensitivity of CI upper bound (Scenario 3)", 
+     pch = 0, main = "Sensitivity of 90% CI upper bound (Scenario 3)", 
      xlab = "Time (days)", ylab = "CI upper bound")
 for(s in 2:S){
   lines(seq(1,33),RCIupa5[s,], type = "p", col = "darkolivegreen", pch = 0)

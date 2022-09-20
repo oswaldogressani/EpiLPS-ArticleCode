@@ -30,13 +30,12 @@ simcheck <- episim(serial_interval = si_sars, endepi = 40, Rpattern = 1,
 
 
 # LPSMAP, LPSMALA and EpiEstim with 7 days window
-pdf(file = "Figures/LPSMAP_S5_7d.pdf", width = 15, height = 4.6)
 sim5_LPSMAP90_sars <- perfcheck(S = S, serial_interval = si_sars, scenario = 1,
                            K = 40, method = "LPSMAP", dist = "negbin",
                            overdisp = 5, ci_level = 0.90, Rconst = 1.3,
                            seed = seedval, themetype = "gray", epidays = 40,
                            midwindow = TRUE)
-dev.off()
+
 
 sim5_LPSMALA90_sars <- perfcheck(S = S, serial_interval = si_sars, scenario = 1,
                                 K = 40, method = "LPSMALA", chain_length = 3000,
@@ -77,16 +76,20 @@ pdf(file = "Figures/S5_LPSMAP_Incidence.pdf", width = 6, height = 4.5)
 sim5_LPSMAP90_sars$inciplot+ggplot2::ggtitle("Incidence (Scenario 5)")
 dev.off()
 pdf(file = "Figures/S5_LPSMAP_sars.pdf", width = 6, height = 4.5) 
-sim5_LPSMAP90_sars$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories")
+sim5_LPSMAP90_sars$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S5_LPSMALA_sars.pdf", width = 6, height = 4.5) 
-sim5_LPSMALA90_sars$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories")
+sim5_LPSMALA90_sars$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S5_EpiEstim7d_sars.pdf", width = 6, height = 4.5) 
-sim5_LPSMAP90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories")
+sim5_LPSMAP90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S5_EpiEstim3d_sars.pdf", width = 6, height = 4.5) 
-sim5_3d90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories")
+sim5_3d90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 
 
@@ -94,13 +97,17 @@ png(file = "Figures/Scenario5_Summary_plots.png", width = 1000, height = 1100)
 gridExtra::grid.arrange(sim5_LPSMAP90_sars$inciplot+
                           ggplot2::ggtitle("Incidence (Scenario 5)"),
                         sim5_LPSMAP90_sars$Rlpsplot+
-                          ggplot2::ggtitle("LPSMAP trajectories"),
+                          ggplot2::ggtitle("LPSMAP trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim5_LPSMALA90_sars$Rlpsplot+
-                          ggplot2::ggtitle("LPSMALA trajectories"),
+                          ggplot2::ggtitle("LPSMALA trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim5_LPSMAP90_sars$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 7d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim5_3d90_sars$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 3d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         nrow = 3, ncol = 2)
 dev.off()
                         

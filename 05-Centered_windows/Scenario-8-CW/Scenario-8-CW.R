@@ -74,16 +74,20 @@ pdf(file = "Figures/S8_LPSMAP_Incidence.pdf", width = 6, height = 4.5)
 sim8_LPSMAP90_sars$inciplot+ggplot2::ggtitle("Incidence (Scenario 8)")
 dev.off()
 pdf(file = "Figures/S8_LPSMAP_sars.pdf", width = 6, height = 4.5) 
-sim8_LPSMAP90_sars$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories")
+sim8_LPSMAP90_sars$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S8_LPSMALA_sars.pdf", width = 6, height = 4.5) 
-sim8_LPSMALA90_sars$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories")
+sim8_LPSMALA90_sars$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S8_EpiEstim7d_sars.pdf", width = 6, height = 4.5) 
-sim8_LPSMAP90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories")
+sim8_LPSMAP90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 pdf(file = "Figures/S8_EpiEstim3d_sars.pdf", width = 6, height = 4.5) 
-sim8_3d90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories")
+sim8_3d90_sars$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+  ggplot2::xlim(c(8,42))
 dev.off()
 
 
@@ -91,13 +95,17 @@ png(file = "Figures/Scenario8_Summary_plots.png", width = 1000, height = 1100)
 gridExtra::grid.arrange(sim8_LPSMAP90_sars$inciplot+
                           ggplot2::ggtitle("Incidence (Scenario 8)"),
                         sim8_LPSMAP90_sars$Rlpsplot+
-                          ggplot2::ggtitle("LPSMAP trajectories"),
+                          ggplot2::ggtitle("LPSMAP trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim8_LPSMALA90_sars$Rlpsplot+
-                          ggplot2::ggtitle("LPSMALA trajectories"),
+                          ggplot2::ggtitle("LPSMALA trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim8_LPSMAP90_sars$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 7d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         sim8_3d90_sars$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 3d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+                          ggplot2::xlim(c(8,42)),
                         nrow = 3, ncol = 2)
 dev.off()
                         

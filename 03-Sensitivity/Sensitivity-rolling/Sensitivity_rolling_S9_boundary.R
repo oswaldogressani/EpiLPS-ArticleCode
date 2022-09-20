@@ -49,7 +49,7 @@ Rhatepiestim[[j]] <- epiestim_fit$R$`Mean(R)`
 tdom <- seq(1, 60, by = 0.01)
 tdiscr <- seq(8, 60)
 Rtarget <- sapply(tdom, simepidemic$Rtrue)
-png(file = "Sensitivity_rolling.png", width = 1500, height = 900)
+png(file = "Sensitivity_rolling_boundary_window.png", width = 1500, height = 900)
 par(mar = c(5.1, 4.1, 4.1, 2.1) + 0.3)
 plot(tdom, Rtarget, type = "l", col = "black", ylab="R(t)", xlab="Time (days)",
      ylim = c(0,4), lty = 2, main = "Scenario 9", cex.lab= 1.4, cex.axis = 1.5,
@@ -81,7 +81,7 @@ dev.off()
 tdom <- seq(1, 60, by = 0.01)
 tdiscr <- seq(8, 60)
 Rtarget <- sapply(tdom, simepidemic$Rtrue)
-pdf(file = "Sensitivity_rolling.pdf", width = 13.5, height = 7)
+pdf(file = "Sensitivity_rolling_boundary_window.pdf", width = 13.5, height = 7)
 par(mar = c(5.1, 4.1, 4.1, 2.1) + 0.3)
 plot(tdom, Rtarget, type = "l", col = "black", ylab="R(t)", xlab="Time (days)",
      ylim = c(0,4), lty = 2, main = "Scenario 9", cex.lab= 1.5, cex.axis = 1.5,

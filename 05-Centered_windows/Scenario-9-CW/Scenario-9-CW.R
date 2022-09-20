@@ -23,15 +23,11 @@ si_mers <- si_mers/sum(si_mers)
 simcheck <- episim(serial_interval = si_mers, endepi = 60, Rpattern = 5,
                    dist="negbin", overdisp = 50, verbose = TRUE, plotsim = TRUE)
 
-
-# LPSMAP, LPSMALA and EpiEstim with 7 days window
-pdf(file = "Figures/LPSMAP_S9_7d.pdf", width = 15, height = 4.6)
 sim9_LPSMAP90_mers <- perfcheck(S = S, serial_interval = si_mers, scenario = 5,
                            K = 40, method = "LPSMAP", dist = "negbin",
                            overdisp = 50, ci_level = 0.90,
                            seed = seedval, themetype = "gray", epidays = 60,
                            midwindow = TRUE)
-dev.off()
 
 sim9_LPSMALA90_mers <- perfcheck(S = S, serial_interval = si_mers, scenario = 5,
                                 K = 40, method = "LPSMALA", chain_length = 3000,
@@ -72,16 +68,20 @@ pdf(file = "Figures/S9_LPSMAP_Incidence.pdf", width = 6, height = 4.5)
 sim9_LPSMAP90_mers$inciplot+ggplot2::ggtitle("Incidence (Scenario 9)")
 dev.off()
 pdf(file = "Figures/S9_LPSMAP_mers.pdf", width = 6, height = 4.5) 
-sim9_LPSMAP90_mers$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories")
+sim9_LPSMAP90_mers$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+  ggplot2::xlim(c(8,62))
 dev.off()
 pdf(file = "Figures/S9_LPSMALA_mers.pdf", width = 6, height = 4.5) 
-sim9_LPSMALA90_mers$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories")
+sim9_LPSMALA90_mers$Rlpsplot+ggplot2::ggtitle("LPSMALA trajectories") +
+  ggplot2::xlim(c(8,62))
 dev.off()
 pdf(file = "Figures/S9_EpiEstim7d_mers.pdf", width = 6, height = 4.5) 
-sim9_LPSMAP90_mers$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories")
+sim9_LPSMAP90_mers$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+  ggplot2::xlim(c(8,62))
 dev.off()
 pdf(file = "Figures/S9_EpiEstim3d_mers.pdf", width = 6, height = 4.5) 
-sim9_3d90_mers$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories")
+sim9_3d90_mers$Repiesplot+ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+  ggplot2::xlim(c(8,62))
 dev.off()
 
 
@@ -89,14 +89,29 @@ png(file = "Figures/Scenario9_Summary_plots.png", width = 1000, height = 1100)
 gridExtra::grid.arrange(sim9_LPSMAP90_mers$inciplot+
                           ggplot2::ggtitle("Incidence (Scenario 9)"),
                         sim9_LPSMAP90_mers$Rlpsplot+
-                          ggplot2::ggtitle("LPSMAP trajectories"),
+                          ggplot2::ggtitle("LPSMAP trajectories") +
+                          ggplot2::xlim(c(8,62)),
                         sim9_LPSMALA90_mers$Rlpsplot+
-                          ggplot2::ggtitle("LPSMALA trajectories"),
+                          ggplot2::ggtitle("LPSMALA trajectories") +
+                          ggplot2::xlim(c(8,62)),
                         sim9_LPSMAP90_mers$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 7d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+                          ggplot2::xlim(c(8,62)),
                         sim9_3d90_mers$Repiesplot+
-                          ggplot2::ggtitle("EpiEstim 3d windows trajectories"),
+                          ggplot2::ggtitle("EpiEstim 3d windows trajectories") +
+                          ggplot2::xlim(c(8,62)),
                         nrow = 3, ncol = 2)
+dev.off()
+
+# LPSMAP, LPSMALA and EpiEstim with 7 days window
+pdf(file = "Figures/LPSMAP_S9_7d.pdf", width = 15, height = 4.6)
+gridExtra::grid.arrange(
+sim9_LPSMAP90_mers$inciplot+ggplot2::ggtitle("Incidence (Scenario 9)"), 
+sim9_LPSMAP90_mers$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+    ggplot2::xlim(c(8,62)),
+sim9_LPSMAP90_mers$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+    ggplot2::xlim(c(8,62)),
+nrow = 1, ncol = 3)
 dev.off()
                         
 #------ Populating table for MERS SI
