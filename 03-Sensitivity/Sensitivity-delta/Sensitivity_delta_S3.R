@@ -230,9 +230,9 @@ round(deltapriors, 3)
 
 
 # Plot the CI lower bounds
-pdf(file = "Sensitivity_CI_Scenario3.pdf", width = 21, height = 7)
+pdf(file = "Sensitivity_CI_Scenario3.pdf", width = 15, height = 21)
 
-par(mfrow = c(1,2))
+par(mfrow = c(2,1))
 
 # P1: a_delta=5; b_delta=5
 plot(seq(1,33),RCIlowa5[1,], type="p", ylim = c(0,5), col="darkolivegreen",
