@@ -109,6 +109,17 @@ gridExtra::grid.arrange(sim9_LPSMAP90_mers$inciplot+
                           ggplot2::ggtitle("EpiEstim 1d windows trajectories"),
                         nrow = 3, ncol = 2)
 dev.off()
+
+# LPSMAP, LPSMALA and EpiEstim with 7 days window
+pdf(file = "Figures/LPSMAP_S9_7d.pdf", width = 15, height = 4.6)
+gridExtra::grid.arrange(
+  sim9_LPSMAP90_mers$inciplot+ggplot2::ggtitle("Incidence (Scenario 9)"), 
+  sim9_LPSMAP90_mers$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+    ggplot2::xlim(c(8,62)),
+  sim9_LPSMAP90_mers$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+    ggplot2::xlim(c(8,62)),
+  nrow = 1, ncol = 3)
+dev.off()
                         
 #------ Populating table for MERS SI
 Scenario9_mers <- matrix(0, nrow = 5, ncol = 6)

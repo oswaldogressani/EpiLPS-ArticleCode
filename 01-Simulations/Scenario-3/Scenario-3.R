@@ -111,6 +111,17 @@ gridExtra::grid.arrange(sim3_LPSMAP90_flu$inciplot+
                           ggplot2::ggtitle("EpiEstim 1d windows trajectories"),
                         nrow = 3, ncol = 2)
 dev.off()
+
+pdf(file = "Figures/LPSMAP_S3_7d.pdf", width = 15, height = 4.6)
+# LPSMAP, LPSMALA and EpiEstim with 7 days window
+gridExtra::grid.arrange(
+  sim3_LPSMAP90_flu$inciplot+ggplot2::ggtitle("Incidence (Scenario 3)"),
+  sim3_LPSMAP90_flu$Rlpsplot+ggplot2::ggtitle("LPSMAP trajectories") +
+    ggplot2::xlim(c(8,42)),
+  sim3_LPSMAP90_flu$Repiesplot+ggplot2::ggtitle("EpiEstim 7d windows trajectories") +
+    ggplot2::xlim(c(8,42)),
+  nrow = 1, ncol = 3)
+dev.off()
                         
 #------ Populating table for flu SI
 Scenario3_flu <- matrix(0, nrow = 5, ncol = 6)
